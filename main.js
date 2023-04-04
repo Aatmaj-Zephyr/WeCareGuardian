@@ -6,7 +6,7 @@ window.addEventListener("load", (event) => {
 });
 
 function doPageTasks() {
-    
+
     //segeregate tasks according to the page address
     var pageIdentifier = document.getElementById("pageIdentifier").innerHTML;
     console.log("You are now in " + pageIdentifier)
@@ -23,8 +23,8 @@ function doPageTasks() {
         case "medicineGuardianPage":
             medicineGuardianPageTasks();
             break;
-        
-        
+
+
     }
 }
 
@@ -51,13 +51,13 @@ function initializeFirebase() {
     console.log(app);
 }
 
-function mealsGuardianPageTasks(){
+function mealsGuardianPageTasks() {
     console.log("You are now in meals guardian page")
     fetchMealFromFB()
     checkMealsColor();
 }
 
-function mealsPhotoPageTasks(){
+function mealsPhotoPageTasks() {
     console.log("You are now in meals photo page")
     var currentMeal = sessionStorage.getItem("currentMeal");
     document.getElementById("heading").innerHTML = currentMeal;
@@ -67,134 +67,134 @@ function mealsPhotoPageTasks(){
 }
 
 function displayPhotoFromFirebase() {
-	//get meal photo from firebase storage
+    //get meal photo from firebase storage
 
     var currentMeal = sessionStorage.getItem("currentMeal");
-	const storage = firebase.storage();
-	const storageRef = storage.ref().child("photos/"+currentMeal+".jpeg");
-	storageRef
-		.getDownloadURL()
-		.then(function (url) {
-			// Display the image in an HTML div element with id "currentMealPhoto"
-			const mealsPhoto = document.getElementById("currentMealPhoto");
+    const storage = firebase.storage();
+    const storageRef = storage.ref().child("photos/" + currentMeal + ".jpeg");
+    storageRef
+        .getDownloadURL()
+        .then(function (url) {
+            // Display the image in an HTML div element with id "currentMealPhoto"
+            const mealsPhoto = document.getElementById("currentMealPhoto");
             const cacheBuster = new Date().getTime(); // Generate a random cache-busting value
 
             // Append the cache-buster to the image URL
             url += `?v=${cacheBuster}`;
-			mealsPhoto.style.backgroundImage = `url(${url})`;
+            mealsPhoto.style.backgroundImage = `url(${url})`;
             mealsPhoto.style.backgroundSize = "100% 100%";
-            mealsPhoto.style.backgroundRepeat= "no-repeat";
-            
+            mealsPhoto.style.backgroundRepeat = "no-repeat";
 
-		})
-		.catch(function (error) {
-			console.error(error);
-		});
 
-        //in future will need to define users
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+
+    //in future will need to define users
 }
 
 function checkMealsColor() {
 
-    if (sessionStorage.getItem("Breakfast")=="true") {
+    if (sessionStorage.getItem("Breakfast") == "true") {
         console.log("Breakfast is taken")
         document.getElementById("breakfastButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
-    if (sessionStorage.getItem("Lunch")=="true") {
+    if (sessionStorage.getItem("Lunch") == "true") {
         console.log("Lunch is taken")
         document.getElementById("lunchButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
-    if (sessionStorage.getItem("Dinner")=="true") {
+    if (sessionStorage.getItem("Dinner") == "true") {
         console.log("Dinner is taken")
         document.getElementById("dinerButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
-   
+
 }
 
 function checkMedicineColor() {
 
-    
-    if (sessionStorage.getItem("Morning")=="true") {
+
+    if (sessionStorage.getItem("Morning") == "true") {
         console.log("Morning is taken")
         document.getElementById("morningButtonGuardian").style.backgroundColor = "#B7FFBA";
         document.getElementById("morningButtonGuardianEmogi").innerHTML = "✅"
     }
-    if (sessionStorage.getItem("Afternoon")=="true") {
+    if (sessionStorage.getItem("Afternoon") == "true") {
         console.log("Afternoon is taken")
         document.getElementById("afternoonButtonGuardian").style.backgroundColor = "#B7FFBA";
         document.getElementById("afternoonButtonGuardianEmogi").innerHTML = "✅"
     }
-    if (sessionStorage.getItem("Night")=="true") {
+    if (sessionStorage.getItem("Night") == "true") {
         console.log("Night is taken")
         document.getElementById("nightButtonGuardian").style.backgroundColor = "#B7FFBA";
         document.getElementById("nightButtonGuardianEmogi").innerHTML = "✅"
     }
 }
 
-function fetchMedicineFromFB(){
+function fetchMedicineFromFB() {
     //fetch data and update local storage
 
     // Get a reference to the database
-  const database = firebase.database();
-  
+    const database = firebase.database();
 
-  // Get a reference to the database location you want to read from
-  const ref = database.ref("Medicine/");
 
-  // Attach a listener for changes to the data
-  ref.on("value", (snapshot) => {
-    // Get the data from the snapshot
-    const data = snapshot.val();
-    // Do something with the data
-    console.log("Data:", data);
-    analyzeAndActMedicine(data);
-  });
+    // Get a reference to the database location you want to read from
+    const ref = database.ref("Medicine/");
+
+    // Attach a listener for changes to the data
+    ref.on("value", (snapshot) => {
+        // Get the data from the snapshot
+        const data = snapshot.val();
+        // Do something with the data
+        console.log("Data:", data);
+        analyzeAndActMedicine(data);
+    });
 
 }
 
-function fetchMealFromFB(){
+function fetchMealFromFB() {
     //fetch data and update local storage
 
     // Get a reference to the database
-  const database = firebase.database();
-  
+    const database = firebase.database();
 
-  // Get a reference to the database location you want to read from
-  const ref = database.ref("Meal/");
 
-  // Attach a listener for changes to the data
-  ref.on("value", (snapshot) => {
-    // Get the data from the snapshot
-    const data = snapshot.val();
-    // Do something with the data
-    console.log("Data:", data);
-    analyzeAndActMeal(data);
-  });
+    // Get a reference to the database location you want to read from
+    const ref = database.ref("Meal/");
+
+    // Attach a listener for changes to the data
+    ref.on("value", (snapshot) => {
+        // Get the data from the snapshot
+        const data = snapshot.val();
+        // Do something with the data
+        console.log("Data:", data);
+        analyzeAndActMeal(data);
+    });
 
 }
-function medicineGuardianPageTasks(){
+function medicineGuardianPageTasks() {
+    console.log("You are now in medicine gruardian page")
     fetchMedicineFromFB();
-    
     checkMedicineColor();
 
 
 }
 
-function analyzeAndActMedicine(data){
+function analyzeAndActMedicine(data) {
     sessionStorage.setItem("Morning", data.Morning);
-    sessionStorage.setItem("Afternoon",data.Afternoon);
+    sessionStorage.setItem("Afternoon", data.Afternoon);
     sessionStorage.setItem("Night", data.Night);
     console.log(sessionStorage)
 }
 
-function analyzeAndActMeal(data){
+function analyzeAndActMeal(data) {
     sessionStorage.setItem("Breakfast", data.Breakfast);
-    sessionStorage.setItem("Lunch",data.Lunch);
+    sessionStorage.setItem("Lunch", data.Lunch);
     sessionStorage.setItem("Dinner", data.Dinner);
     console.log(sessionStorage)
 }
 
-function exerciseGuardianPageTasks(){
+function exerciseGuardianPageTasks() {
     console.log("You are now in exercise guardian page")
     //show video
     displayVideoFromFirebase();
@@ -209,7 +209,7 @@ function displayVideoFromFirebase() {
         console.log(url);
         exerciseVideo.src = url;
         exerciseVideo.play();
-        
+
     }).catch(error => {
         console.log(error);
     });
@@ -217,18 +217,18 @@ function displayVideoFromFirebase() {
 }
 
 
-function redirectToMealsPhotoPage(meal){
-    if (sessionStorage.getItem(meal)=="true") {
-    sessionStorage.setItem("currentMeal",meal);
-    window.location.href = "./mealsPhotoPage.html";
+function redirectToMealsPhotoPage(meal) {
+    if (sessionStorage.getItem(meal) == "true") {
+        sessionStorage.setItem("currentMeal", meal);
+        window.location.href = "./mealsPhotoPage.html";
     }
 }
-function redirectToMedicinePage(){
+function redirectToMedicinePage() {
     window.location.href = "./medicineGuardianPage.html";
 }
-function redirectToMealsPage(){
+function redirectToMealsPage() {
     window.location.href = "./mealsGuardianPage.html";
 }
-function redirectToExercisePage(){
+function redirectToExercisePage() {
     window.location.href = "./exerciseGuardianPage.html";
 }
