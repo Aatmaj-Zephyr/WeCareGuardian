@@ -11,8 +11,8 @@ function doPageTasks() {
     var pageIdentifier = document.getElementById("pageIdentifier").innerHTML;
     console.log("You are now in " + pageIdentifier)
     switch (pageIdentifier) {
-        case "mealsGurdianPage":
-            mealsGurdianPageTasks();
+        case "mealsGuardianPage":
+            mealsGuardianPageTasks();
             break;
         case "mealsPhoto":
             mealsPhotoPageTasks();
@@ -44,7 +44,7 @@ function initializeFirebase() {
     console.log(app);
 }
 
-function mealsGurdianPageTasks(){
+function mealsGuardianPageTasks(){
     fetchMealFromFB()
     checkMealsColor();
 }
@@ -87,15 +87,15 @@ function displayPhotoFromFirebase() {
 
 function checkMealsColor() {
 
-    if (sessionStorage.getItem("Breakfast")) {
+    if (sessionStorage.getItem("Breakfast")=="true") {
         console.log("Breakfast is taken")
         document.getElementById("breakfastButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
-    if (sessionStorage.getItem("Lunch")) {
+    if (sessionStorage.getItem("Lunch")=="true") {
         console.log("Lunch is taken")
         document.getElementById("lunchButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
-    if (sessionStorage.getItem("Dinner")) {
+    if (sessionStorage.getItem("Dinner")=="true") {
         console.log("Dinner is taken")
         document.getElementById("dinerButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
@@ -105,15 +105,15 @@ function checkMealsColor() {
 function checkMedicineColor() {
 
     
-    if (sessionStorage.getItem("Morning")) {
+    if (sessionStorage.getItem("Morning")=="true") {
         console.log("Morning is taken")
         document.getElementById("morningButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
-    if (sessionStorage.getItem("Afternoon")) {
+    if (sessionStorage.getItem("Afternoon")=="true") {
         console.log("Afternoon is taken")
         document.getElementById("afternoonButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
-    if (sessionStorage.getItem("Night")) {
+    if (sessionStorage.getItem("Night")=="true") {
         console.log("Night is taken")
         document.getElementById("nightButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
@@ -175,6 +175,17 @@ function analyzeAndActMeal(data){
     console.log(sessionStorage)
 }
 function redirectToMealsPhotoPage(meal){
+    if (sessionStorage.getItem(meal)=="true") {
     sessionStorage.setItem("currentMeal",meal);
     window.location.href = "./mealsPhotoPage.html";
+    }
+}
+function redirectToMedicinePage(){
+    window.location.href = "./medicineGuardianPage.html";
+}
+function redirectToMealsPage(){
+    window.location.href = "./mealsGuardianPage.html";
+}
+function redirectToExercisePage(){
+    window.location.href = "./exerciseGuardianPage.html";
 }
