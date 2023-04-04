@@ -19,6 +19,10 @@ function doPageTasks() {
             break;
         case "exerciseGuardian":
             exerciseGuardianPageTasks();
+            break;
+        case "medicineGuardianPage":
+            medicineGuardianPageTasks();
+            break;
         
         
     }
@@ -113,14 +117,17 @@ function checkMedicineColor() {
     if (sessionStorage.getItem("Morning")=="true") {
         console.log("Morning is taken")
         document.getElementById("morningButtonGuardian").style.backgroundColor = "#B7FFBA";
+        document.getElementById("morningButtonGuardianEmogi").innerHTML = "✅"
     }
     if (sessionStorage.getItem("Afternoon")=="true") {
         console.log("Afternoon is taken")
         document.getElementById("afternoonButtonGuardian").style.backgroundColor = "#B7FFBA";
+        document.getElementById("afternoonButtonGuardianEmogi").innerHTML = "✅"
     }
     if (sessionStorage.getItem("Night")=="true") {
         console.log("Night is taken")
         document.getElementById("nightButtonGuardian").style.backgroundColor = "#B7FFBA";
+        document.getElementById("nightButtonGuardianEmogi").innerHTML = "✅"
     }
 }
 
@@ -163,6 +170,13 @@ function fetchMealFromFB(){
     console.log("Data:", data);
     analyzeAndActMeal(data);
   });
+
+}
+function medicineGuardianPageTasks(){
+    fetchMedicineFromFB();
+    
+    checkMedicineColor();
+
 
 }
 

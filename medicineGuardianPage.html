@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- Name of File: medicineGuardianPage.html      -->
+<html>
+	<p hidden id="pageIdentifier">medicineGuardianPage</p>
+	<link href="https://fonts.googleapis.com/css?family=Asul" rel="stylesheet" />
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	/>
+
+	<script src="./main.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script> 
+
+
+	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js "></script>
+	<link rel="stylesheet" href="./styles.css" />
+
+	<head>
+		<meta charset="utf-8" />
+		<title>Track medicine</title>
+	</head>
+
+	<!--heading component-->
+	<div class="Heading">
+		<span id="heading" class="HeadingText"> Medicine</span>
+	</div>
+
+	<body class="back">
+		<!--Button component-->
+		<div
+			class=" box topButton"
+			id="morningButtonGuardian"
+			
+		>
+			<span id = "morningButtonGuardianEmogi" class="emogi">❌</span>
+			<span class="ButtonText">Morning</span>
+		</div>
+
+		<!--Button component-->
+		<div
+			class=" box midButton"
+			id="afternoonButtonGuardian"
+		>
+			<span id = "afternoonButtonGuardianEmogi" class="emogi">❌</span>
+			<span class="ButtonText">Afternoon</span>
+		</div>
+
+		<!--Button component-->
+		<div
+			class=" box bottomButton"
+			id="nightButtonGuardian"
+			
+		>
+			<span id = "nightButtonGuardianEmogi" class="emogi">❌</span>
+			<span class="ButtonText">Night</span>
+		</div>
+
+		<!--Nav bar Guardian-->
+		<div class="NavBarGuardian">
+			<i class="pill" onclick="redirectToMedicinePage()">💊</i>
+			<i class="cutlery" onclick="redirectToMealsPage()">🍴</i>
+			<i class="walking" onclick="redirectToExercisePage()">🏃🏻‍♂️</i>
+		</div>
+	</body>
+</html>
