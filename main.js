@@ -106,7 +106,7 @@ function checkMealsColor() {
     }
     if (sessionStorage.getItem("Dinner") == "true") {
         console.log("Dinner is taken")
-        document.getElementById("dinerButtonGuardian").style.backgroundColor = "#B7FFBA";
+        document.getElementById("dinnerButtonGuardian").style.backgroundColor = "#B7FFBA";
     }
 
 }
