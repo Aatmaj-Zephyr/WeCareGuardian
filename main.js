@@ -93,7 +93,7 @@ function displayPhotoFromFirebase() {
 
     //in future will need to define users
 }
-
+""
 function checkMealsColor() {
 
     if (sessionStorage.getItem("Breakfast") == "true") {
