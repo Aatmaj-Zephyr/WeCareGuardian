@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- Name of File: template.html      -->
+<html>
+    <p hidden id="pageIdentifier">mealsPhoto</p>
+    <link href='https://fonts.googleapis.com/css?family=Asul' rel='stylesheet'>	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="./main.js"></script>
+	  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script> 
+
+
+	<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js "></script>
+    <link rel="stylesheet" href="./styles.css">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>watch photos</title>
+	</head>
+
+	<body class="back">
+	
+			<!--heading component-->
+            <div class="Heading">
+                <span id="heading" class="HeadingText"> Meals</span>
+            </div>
+            
+            <div class="mealsPhoto" id="currentMealPhoto"></div>
+
+
+            <!--Nav bar Guardian-->
+            <div class="NavBarGuardian">
+                <i class="pill" onclick="redirectToMedicinePage()">💊</i>
+                <i class="cutlery" onclick="redirectToMealsPage()">🍴</i>
+                <i class="walking" onclick="redirectToExercisePage()">🏃🏻‍♂️</i>
+            </div>
+
+	</body>
+</html>
