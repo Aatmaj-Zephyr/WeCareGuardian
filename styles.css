@@ -125,6 +125,17 @@ top: 15%;
 
 }
 
+.exerciseVideoContainer{/* Meals photo */
+
+
+    position: absolute;
+    width: 90%;
+    height: 70%;
+    left: 5%;
+    top: 15%;
+    
+    }
+
 .NavBarGuardian{
     /* Nav Bar guardian */
 

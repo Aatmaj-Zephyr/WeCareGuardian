@@ -17,6 +17,9 @@ function doPageTasks() {
         case "mealsPhoto":
             mealsPhotoPageTasks();
             break;
+        case "exerciseGuardian":
+            exerciseGuardianPageTasks();
+        
         
     }
 }
@@ -45,11 +48,13 @@ function initializeFirebase() {
 }
 
 function mealsGuardianPageTasks(){
+    console.log("You are now in meals guardian page")
     fetchMealFromFB()
     checkMealsColor();
 }
 
 function mealsPhotoPageTasks(){
+    console.log("You are now in meals photo page")
     var currentMeal = sessionStorage.getItem("currentMeal");
     document.getElementById("heading").innerHTML = currentMeal;
 
@@ -174,6 +179,30 @@ function analyzeAndActMeal(data){
     sessionStorage.setItem("Dinner", data.Dinner);
     console.log(sessionStorage)
 }
+
+function exerciseGuardianPageTasks(){
+    console.log("You are now in exercise guardian page")
+    //show video
+    displayVideoFromFirebase();
+
+}
+
+function displayVideoFromFirebase() {
+    const storageRef = firebase.storage().ref('videos/Exercise.mp4');
+    const exerciseVideo = document.getElementById('exerciseVideo');
+
+    storageRef.getDownloadURL().then(url => {
+        console.log(url);
+        exerciseVideo.src = url;
+        exerciseVideo.play();
+        
+    }).catch(error => {
+        console.log(error);
+    });
+
+}
+
+
 function redirectToMealsPhotoPage(meal){
     if (sessionStorage.getItem(meal)=="true") {
     sessionStorage.setItem("currentMeal",meal);
